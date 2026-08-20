@@ -13,6 +13,7 @@ import {
   SectionHeading,
 } from "./primitives";
 import { ParallaxVideo } from "./ParallaxVideo";
+import logoUrl from "@/assets/logo.png";
 
 const FIELD =
   "w-full rounded-sm border border-border bg-[color-mix(in_oklab,var(--teal-deep)_14%,transparent)] px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-[var(--gold)]";
@@ -278,7 +279,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <a href="#top" className="flex items-center gap-3">
-            <BrandMark />
+            <img src={logoUrl} alt="CNI Logo" className="h-8 w-auto object-contain" />
             <span className="font-display text-[0.78rem] uppercase tracking-[0.3em]">
               AI &amp; Digital Division
             </span>

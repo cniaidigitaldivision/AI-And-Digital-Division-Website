@@ -292,6 +292,24 @@
   }
 }
 
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}
+
+@utility animate-marquee-left {
+  animation: marquee-left 25s linear infinite;
+}
+
+@utility animate-marquee-right {
+  animation: marquee-right 25s linear infinite;
+}
+
 @utility animate-pulse-dot {
   animation: pulse-dot 2.2s ease-in-out infinite;
 }
