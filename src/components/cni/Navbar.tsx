@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/cni-data";
 import { BrandMark, MagneticButton } from "./primitives";
 import { cn } from "@/lib/utils";
-import logoImg from "@/assets/logo.jpg";
+import logoImg from "@/assets/logo.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,7 +27,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="flex items-center gap-3">
-          <img src={logoImg} alt="Logo" className="h-14 sm:h-20 w-auto object-contain" />
+          <img src={logoImg} alt="Logo" className="h-20 sm:h-28 w-auto object-contain" />
           <span className="font-display text-[0.78rem] uppercase tracking-[0.3em] text-foreground">
             AI &amp; Digital Division
           </span>

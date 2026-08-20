@@ -14,7 +14,6 @@ import {
   Leadership,
 } from "@/components/cni/SectionsB";
 import { Contact, Footer } from "@/components/cni/Contact";
-import { CustomCursor } from "@/components/cni/primitives";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,8 +39,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative min-h-screen bg-background md:cursor-none">
-      <CustomCursor />
+    <div className="relative min-h-screen bg-background">
       <Navbar />
       <main>
         <Hero />

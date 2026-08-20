@@ -100,43 +100,48 @@ export function AboutReveal() {
   return (
     <section
       id="about"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#0A1414] px-5 pb-28 pt-20 sm:px-8 sm:pb-32 md:px-10"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-[#0A1414] via-[#0F2E2C] to-[#0D2624] py-28 sm:py-36"
     >
-      <FloatIcon
-        src={brainIcon}
-        alt="Faceted AI brain"
-        from={-80}
-        delay={0.1}
-        className="left-[1%] top-[4%] w-[120px] sm:left-[2%] sm:w-[160px] md:left-[4%] md:w-[210px]"
-      />
-      <FloatIcon
-        src={nodesIcon}
-        alt="Automation node network"
-        from={80}
-        delay={0.15}
-        float={16}
-        className="right-[1%] top-[4%] w-[120px] sm:right-[2%] sm:w-[160px] md:right-[4%] md:w-[210px]"
-      />
+      {/* Global Container Wrapper - Consistent with all other sections */}
+      <div className="relative mx-auto max-w-7xl px-6 w-full flex flex-col items-center justify-center">
+        {/* Floating 3D Icons positioned absolutely relative to max-w-7xl container */}
+        <FloatIcon
+          src={brainIcon}
+          alt="Faceted AI brain"
+          from={-60}
+          delay={0.1}
+          className="absolute -left-2 sm:left-2 lg:left-4 top-4 sm:top-8 md:top-12 w-[90px] sm:w-[130px] md:w-[170px] lg:w-[210px]"
+        />
+        <FloatIcon
+          src={nodesIcon}
+          alt="Automation node network"
+          from={60}
+          delay={0.15}
+          float={16}
+          className="absolute -right-2 sm:right-2 lg:right-4 top-4 sm:top-8 md:top-12 w-[90px] sm:w-[130px] md:w-[170px] lg:w-[210px]"
+        />
 
-      <div className="relative z-10 flex w-full flex-col items-center gap-10 sm:gap-14 md:gap-16">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="text-gradient-brand font-display text-center font-bold uppercase leading-[0.95] tracking-[0.02em]"
-          style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-        >
-          About Us
-        </motion.h2>
+        {/* Centered Main Content Wrapper */}
+        <div className="relative z-10 flex w-full flex-col items-center gap-8 sm:gap-12 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-gradient-brand font-display font-bold uppercase leading-[0.95] tracking-[0.02em]"
+            style={{ fontSize: "clamp(2.8rem, 9vw, 120px)" }}
+          >
+            About Us
+          </motion.h2>
 
-        <div className="flex w-full flex-col items-center gap-6 sm:gap-8">
-          <CharReveal text={COPY} />
-          <CharReveal text={SERVICES_COPY} />
+          <div className="flex w-full flex-col items-center gap-6 sm:gap-8 max-w-3xl mx-auto">
+            <CharReveal text={COPY} />
+            <CharReveal text={SERVICES_COPY} />
 
-          <MagneticButton as="a" href="#contact" className="mt-8 sm:mt-10">
-            Let&apos;s Talk
-          </MagneticButton>
+            <MagneticButton as="a" href="#contact" className="mt-6 sm:mt-8">
+              Let&apos;s Talk
+            </MagneticButton>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from "react";
-import { Mail, MessageCircle, Globe, MapPin } from "lucide-react";
+import { Mail, MessageCircle, Globe, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { BUDGET_OPTIONS, NAV_LINKS } from "@/lib/cni-data";
+import { submitContactForm } from "@/lib/contact.functions";
+import { CustomDropdown } from "./CustomDropdown";
 import {
   BrandMark,
   CircuitBackdrop,
@@ -16,16 +18,79 @@ const FIELD =
   "w-full rounded-sm border border-border bg-[color-mix(in_oklab,var(--teal-deep)_14%,transparent)] px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-[var(--gold)]";
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    budget: "",
+    message: "",
+  });
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(
+    null,
+  );
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (fieldErrors[name]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleBudgetChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, budget: value }));
+    if (fieldErrors.budget) {
+      setFieldErrors((prev) => ({ ...prev, budget: "" }));
+    }
+  };
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) {
+      errors.name = "Name is required.";
+    }
+    if (!formData.email.trim()) {
+      errors.email = "Email is required.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errors.email = "Please enter a valid email address.";
+    }
+    if (!formData.message.trim()) {
+      errors.message = "Tell us about your business goals.";
+    }
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setFeedback(null);
+
+    if (!validateForm()) {
+      toast.error("Please fix the errors in the form before submitting.");
+      return;
+    }
+
     setSending(true);
-    setTimeout(() => {
+    try {
+      await submitContactForm({ data: formData });
+      setFeedback({
+        type: "success",
+        message: "Thank you! Your enquiry has been submitted successfully. Our growth team will be in touch shortly.",
+      });
+      toast.success("Enquiry sent successfully!");
+      setFormData({ name: "", email: "", company: "", budget: "", message: "" });
+      setFieldErrors({});
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+      const errMsg =
+        err instanceof Error ? err.message : "Failed to send enquiry. Please try again.";
+      setFeedback({ type: "error", message: errMsg });
+      toast.error(errMsg);
+    } finally {
       setSending(false);
-      toast.success("Thank you — our growth team will be in touch shortly.");
-      (e.target as HTMLFormElement).reset();
-    }, 700);
+    }
   };
 
   return (
@@ -57,32 +122,103 @@ export function Contact() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <Reveal>
-            <form onSubmit={onSubmit} className="glass-panel rounded-sm p-8 sm:p-10">
+            <form onSubmit={onSubmit} noValidate className="glass-panel rounded-sm p-8 sm:p-10">
+              {/* Feedback Alert Banners */}
+              {feedback && (
+                <div
+                  className={`mb-6 flex items-start gap-3 rounded-sm border p-4 text-sm ${
+                    feedback.type === "success"
+                      ? "border-[var(--gold)]/60 bg-[color-mix(in_oklab,var(--teal-deep)_30%,transparent)] text-[var(--gold-bright)]"
+                      : "border-red-500/60 bg-red-950/40 text-red-300"
+                  }`}
+                >
+                  {feedback.type === "success" ? (
+                    <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-[var(--gold-bright)]" />
+                  ) : (
+                    <AlertCircle className="mt-0.5 size-5 shrink-0 text-red-400" />
+                  )}
+                  <div>
+                    <p className="font-semibold">
+                      {feedback.type === "success" ? "Enquiry Sent" : "Submission Failed"}
+                    </p>
+                    <p className="mt-0.5 text-xs opacity-90">{feedback.message}</p>
+                  </div>
+                </div>
+              )}
+
               <div className="grid gap-4 sm:grid-cols-2">
-                <input required name="name" placeholder="Name" className={FIELD} />
-                <input required type="email" name="email" placeholder="Email" className={FIELD} />
-                <input name="company" placeholder="Company" className={FIELD} />
-                <select name="budget" defaultValue="" className={FIELD}>
-                  <option value="" disabled>
-                    Budget / Package
-                  </option>
-                  {BUDGET_OPTIONS.map((b) => (
-                    <option key={b} value={b} className="bg-[var(--ink)]">
-                      {b}
-                    </option>
-                  ))}
-                </select>
+                <div>
+                  <input
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Name *"
+                    className={`${FIELD} ${fieldErrors.name ? "border-red-500/80" : ""}`}
+                  />
+                  {fieldErrors.name && (
+                    <p className="mt-1 text-xs text-red-400">{fieldErrors.name}</p>
+                  )}
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email *"
+                    className={`${FIELD} ${fieldErrors.email ? "border-red-500/80" : ""}`}
+                  />
+                  {fieldErrors.email && (
+                    <p className="mt-1 text-xs text-red-400">{fieldErrors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <input
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    placeholder="Company"
+                    className={FIELD}
+                  />
+                </div>
+
+                <div>
+                  <CustomDropdown
+                    name="budget"
+                    options={BUDGET_OPTIONS}
+                    value={formData.budget}
+                    onChange={handleBudgetChange}
+                    placeholder="Budget / Package"
+                  />
+                </div>
               </div>
-              <textarea
-                required
-                name="message"
-                rows={5}
-                placeholder="Tell us about your business goals"
-                className={`${FIELD} mt-4 resize-none`}
-              />
-              <div className="mt-7">
+
+              <div className="mt-4">
+                <textarea
+                  name="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your business goals *"
+                  className={`${FIELD} resize-none ${fieldErrors.message ? "border-red-500/80" : ""}`}
+                />
+                {fieldErrors.message && (
+                  <p className="mt-1 text-xs text-red-400">{fieldErrors.message}</p>
+                )}
+              </div>
+
+              <div className="mt-7 flex items-center gap-4">
                 <MagneticButton type="submit" disabled={sending}>
-                  {sending ? "Sending…" : "Send Enquiry"}
+                  {sending ? (
+                    <span className="flex items-center gap-2">
+                      <Loader2 className="size-4 animate-spin" />
+                      Sending…
+                    </span>
+                  ) : (
+                    "Send Enquiry"
+                  )}
                 </MagneticButton>
               </div>
             </form>
