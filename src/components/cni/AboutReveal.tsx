@@ -138,9 +138,14 @@ export function AboutReveal() {
             <CharReveal text={COPY} />
             <CharReveal text={SERVICES_COPY} />
 
-            <MagneticButton as="a" href="#contact" className="mt-6 sm:mt-8">
-              Let&apos;s Talk
-            </MagneticButton>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6 sm:mt-8">
+              <MagneticButton as="a" href="/about">
+                Know More About Us
+              </MagneticButton>
+              <MagneticButton as="a" href="#contact" variant="outline">
+                Let&apos;s Talk
+              </MagneticButton>
+            </div>
           </div>
         </div>
       </div>

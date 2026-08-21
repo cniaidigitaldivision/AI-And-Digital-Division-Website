@@ -330,9 +330,9 @@ export function ServiceEcosystem() {
               <GoldRule className="my-6 w-24" />
               <ul className="grid gap-3 sm:grid-cols-2">
                 {(SERVICES[active]?.items ?? []).map((it) => (
-                  <li key={it} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <li key={it.title} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 text-[var(--gold-bright)]" />
-                    {it}
+                    {it.title}
                   </li>
                 ))}
               </ul>

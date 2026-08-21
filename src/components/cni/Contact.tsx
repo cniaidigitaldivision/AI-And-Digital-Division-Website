@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { Mail, MessageCircle, Globe, MapPin, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { BUDGET_OPTIONS, NAV_LINKS } from "@/lib/cni-data";
@@ -31,6 +31,18 @@ export function Contact() {
   const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(
     null,
   );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const pkg = params.get("package");
+    if (pkg) {
+      // Find a matching budget option (e.g. "Spark — PKR 50,000/mo")
+      const matchedOption = BUDGET_OPTIONS.find(opt => opt.toLowerCase().includes(pkg.toLowerCase()));
+      if (matchedOption) {
+        setFormData(prev => ({ ...prev, budget: matchedOption }));
+      }
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -279,7 +291,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <a href="#top" className="flex items-center gap-3">
-            <img src={logoUrl} alt="CNI Logo" className="h-8 w-auto object-contain" />
+            <img src={logoUrl} alt="CNI Logo" className="h-14 sm:h-16 w-auto object-contain" />
             <span className="font-display text-[0.78rem] uppercase tracking-[0.3em]">
               AI &amp; Digital Division
             </span>

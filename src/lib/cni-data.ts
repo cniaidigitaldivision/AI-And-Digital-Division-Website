@@ -1,59 +1,171 @@
 export const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Packages", href: "#packages" },
-  { label: "Technology", href: "#technology" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Packages", href: "/#packages" },
+  { label: "Portfolio", href: "/#portfolio" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const CORE_VALUES = [
-  { name: "Innovation", detail: "New thinking, applied to real business problems." },
-  { name: "Reliability", detail: "Systems that hold up under real operational load." },
-  { name: "Transparency", detail: "Clear scope, clear reporting, no black boxes." },
-  { name: "Performance", detail: "Measured outcomes over vanity deliverables." },
-  { name: "Partnership", detail: "Embedded with your team, not outside of it." },
-  { name: "Scalability", detail: "Built to grow with the business, not against it." },
+  { name: "INNOVATION", detail: "Embrace new ideas and emerging technologies to build what's next." },
+  { name: "RELIABILITY", detail: "Deliver on our promises with consistency and accountability." },
+  { name: "TRANSPARENCY", detail: "Lead with honest communication and collaboration." },
+  { name: "PERFORMANCE", detail: "Focus on results that create measurable impact for our clients." },
+  { name: "PARTNERSHIP", detail: "Grow together with our clients as true partners in success." },
+  { name: "SCALABILITY", detail: "Build solutions that grow with your business, today and tomorrow." },
 ];
 
-export const SERVICES = [
+export interface ServiceFeature {
+  title: string;
+  description: string;
+}
+
+export interface ServiceData {
+  title: string;
+  slug: string;
+  subtitle: string;
+  items: ServiceFeature[];
+  processSteps: { title: string; description: string }[];
+  idealClientProfile: string[];
+  relatedServices: string[];
+}
+
+export const SERVICES: ServiceData[] = [
   {
     title: "Branding & Identity",
-    items: ["Brand Strategy & Positioning", "Logo Design", "Visual Identity", "Rebranding"],
+    slug: "branding-identity",
+    subtitle: "We build the visual and strategic foundation of your brand — from positioning to a complete visual identity system that makes you instantly recognizable.",
+    items: [
+      { title: "Brand Strategy & Positioning", description: "Defining your core message, audience, and market positioning to stand out." },
+      { title: "Logo Design", description: "Crafting a unique and memorable logo that represents your brand's essence." },
+      { title: "Visual Identity", description: "Developing a cohesive visual system including colors, typography, and imagery." },
+      { title: "Rebranding", description: "Revitalizing existing brands to align with new goals and modern aesthetics." }
+    ],
+    processSteps: [
+      { title: "Survey & Discovery", description: "We deep dive into your business, competitors, and goals." },
+      { title: "Strategy", description: "We define the positioning and core messaging." },
+      { title: "Brand Identity Design", description: "We create the logo and visual language." },
+      { title: "Guidelines & Delivery", description: "We deliver a comprehensive brand book for consistent application." }
+    ],
+    idealClientProfile: [
+      "New businesses needing a strong foundation from day one",
+      "Existing brands looking to refresh or pivot their market position",
+      "Companies expanding into new markets requiring a cohesive identity"
+    ],
+    relatedServices: ["printing-corporate-collateral", "website-development-ecommerce"]
   },
   {
     title: "Printing & Corporate Collateral",
-    items: ["Business Cards", "Brochures", "Packaging", "Signage"],
+    slug: "printing-corporate-collateral",
+    subtitle: "Tangible brand touchpoints that leave a lasting impression.",
+    items: [
+      { title: "Business Cards", description: "Professional cards that make a great first impression." },
+      { title: "Brochures", description: "Informative and visually appealing marketing materials." },
+      { title: "Packaging", description: "Custom packaging design that enhances the unboxing experience." },
+      { title: "Signage", description: "Eye-catching signs for physical locations and events." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "Website Development & Ecommerce",
-    items: ["Business Websites", "Ecommerce Stores", "Landing Pages", "Custom Web Apps"],
+    slug: "website-development-ecommerce",
+    subtitle: "High-performance websites designed for conversion and growth.",
+    items: [
+      { title: "Business Websites", description: "Professional sites that establish credibility." },
+      { title: "Ecommerce Stores", description: "Robust online stores optimized for sales." },
+      { title: "Landing Pages", description: "High-converting pages for specific marketing campaigns." },
+      { title: "Custom Web Apps", description: "Tailored web applications to solve complex business needs." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "SEO, AEO & AI Visibility",
-    items: ["SEO", "Answer Engine Optimization", "AI Search Visibility", "Local SEO"],
+    slug: "seo-aeo-ai-visibility",
+    subtitle: "Dominate search engine results and AI recommendations.",
+    items: [
+      { title: "SEO", description: "Traditional search engine optimization to rank higher on Google." },
+      { title: "Answer Engine Optimization", description: "Optimizing content for AI-driven answer engines." },
+      { title: "AI Search Visibility", description: "Ensuring your brand appears in ChatGPT, Claude, and other AI tools." },
+      { title: "Local SEO", description: "Capturing local search traffic to drive footfall." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "Digital Marketing & Paid Media",
-    items: ["Social Media Marketing", "Google Ads", "Meta Ads", "Performance Marketing"],
+    slug: "digital-marketing-paid-media",
+    subtitle: "Data-driven campaigns that maximize your return on ad spend.",
+    items: [
+      { title: "Social Media Marketing", description: "Engaging your audience on their favorite platforms." },
+      { title: "Google Ads", description: "Capturing high-intent search traffic." },
+      { title: "Meta Ads", description: "Targeted advertising on Facebook and Instagram." },
+      { title: "Performance Marketing", description: "ROI-focused campaigns driven by data." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "Content, Models & Influencers",
-    items: ["Photo/Video Shoots", "Reels", "UGC", "Influencer Campaigns"],
+    slug: "content-models-influencers",
+    subtitle: "Compelling content and authentic voices to tell your story.",
+    items: [
+      { title: "Photo/Video Shoots", description: "High-quality visual production for your brand." },
+      { title: "Reels", description: "Short-form video content optimized for virality." },
+      { title: "UGC", description: "Authentic user-generated content to build trust." },
+      { title: "Influencer Campaigns", description: "Partnering with relevant voices to amplify your reach." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "CRM & WhatsApp Automation",
-    items: ["WhatsApp Business API", "Chatbots", "Lead Management", "Campaign Automation"],
+    slug: "crm-whatsapp-automation",
+    subtitle: "Streamline your sales process and engage customers on their preferred channels.",
+    items: [
+      { title: "WhatsApp Business API", description: "Scalable messaging solutions for customer engagement." },
+      { title: "Chatbots", description: "Automated responses for instant support and lead qualification." },
+      { title: "Lead Management", description: "Efficient tracking and nurturing of potential customers." },
+      { title: "Campaign Automation", description: "Automated messaging sequences to drive conversions." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "ERP, POS, Portals & Custom Software",
-    items: ["ERP", "POS Systems", "Customer/Vendor Portals", "Custom Software"],
+    slug: "erp-pos-portals-custom-software",
+    subtitle: "Robust backend systems to manage your entire business operations.",
+    items: [
+      { title: "ERP", description: "Enterprise resource planning for integrated business management." },
+      { title: "POS Systems", description: "Modern point-of-sale solutions for seamless transactions." },
+      { title: "Customer/Vendor Portals", description: "Dedicated portals for better stakeholder communication." },
+      { title: "Custom Software", description: "Bespoke software built exactly to your specifications." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
   },
   {
     title: "AI Automations, Dashboards & Integrations",
-    items: ["AI-Powered Automations", "BI Dashboards", "API Integrations", "Workflow Automation"],
-  },
+    slug: "ai-automations-dashboards-integrations",
+    subtitle: "Intelligent systems that save time and provide actionable insights.",
+    items: [
+      { title: "AI-Powered Automations", description: "Leveraging AI to automate repetitive tasks." },
+      { title: "BI Dashboards", description: "Interactive visualizations of your key business metrics." },
+      { title: "API Integrations", description: "Connecting your disparate tools into a unified system." },
+      { title: "Workflow Automation", description: "Streamlining complex multi-step processes." }
+    ],
+    processSteps: [],
+    idealClientProfile: [],
+    relatedServices: []
+  }
 ];
 
 export const JOURNEY = [
@@ -71,71 +183,158 @@ export const JOURNEY = [
   "Continuous Growth & Support",
 ];
 
-export const PACKAGES = [
+export interface PackageFeature {
+  title: string;
+  description: string;
+}
+
+
+
+export interface PackageData {
+  name: string;
+  price: string;
+  cadence: string;
+  subtitle: string;
+  description: string;
+  features: PackageFeature[];
+  idealClientProfile: string[];
+  outcomes: string[];
+}
+
+export const PACKAGES: PackageData[] = [
   {
     name: "Spark",
     price: "PKR 50,000",
     cadence: "/mo",
     subtitle: "Starter Presence Package",
-    features: ["2 Platforms", "8–10 Content Pieces / Month", "Basic Performance Reporting"],
+    description: "Perfect for small businesses and startups establishing their first real digital presence — consistent content, two core platforms, and the reporting to know it's working.",
+    features: [
+      { title: "2 Platforms", description: "We manage and post consistently across two social channels of your choice (e.g., Instagram + Facebook)." },
+      { title: "8–10 Content Pieces / Month", description: "A steady cadence of high-quality graphics and captions to keep your audience engaged." },
+      { title: "Basic Performance Reporting", description: "Monthly insights into follower growth, reach, and engagement so you can track progress." }
+    ],
+    idealClientProfile: [
+      "Small businesses just starting out",
+      "Local shops needing consistent visibility",
+      "Founders wanting to outsource basic social media tasks"
+    ],
+    outcomes: [
+      "Consistent, professional presence across your core platforms.",
+      "Clear monthly visibility into what's working.",
+      "A foundation you can scale up from as you grow."
+    ],
+    faqs: [
+      { question: "Can I upgrade later?", answer: "Yes, you can upgrade to a higher tier at any time as your business grows and needs more support." },
+      { question: "What platforms are included?", answer: "You can choose any two standard platforms like Facebook, Instagram, LinkedIn, or Twitter." },
+      { question: "Is there a setup fee?", answer: "No, there are no hidden setup fees for our standard packages. // TODO: confirm with client" },
+      { question: "How is content approved?", answer: "We provide a content calendar in advance for your review and approval before anything goes live." }
+    ]
   },
   {
     name: "Starter",
     price: "PKR 85,000",
     cadence: "/mo",
     subtitle: "Active Local Business Package",
-    features: ["3 Platforms", "12–15 Content Pieces / Month", "1 Ad Campaign"],
+    description: "Ideal for active local businesses looking to boost engagement.",
+    features: [
+      { title: "3 Platforms", description: "Expanded reach across three platforms." },
+      { title: "12–15 Content Pieces / Month", description: "Increased posting frequency." },
+      { title: "1 Ad Campaign", description: "Basic paid media to boost reach." }
+    ],
+    idealClientProfile: ["Active local businesses", "Growing brands"],
+    outcomes: ["Increased engagement", "Broader audience reach"],
+    faqs: [{ question: "Included platforms?", answer: "Any three standard platforms." }]
   },
   {
     name: "Growth",
     price: "PKR 125,000",
     cadence: "/mo",
     subtitle: "Consistent Growth Package",
-    features: ["4 Platforms", "15–20 Content Pieces / Month", "2 Ad Campaigns"],
+    description: "For businesses ready to invest in consistent growth.",
+    features: [
+      { title: "4 Platforms", description: "Comprehensive social presence." },
+      { title: "15–20 Content Pieces / Month", description: "High volume content." },
+      { title: "2 Ad Campaigns", description: "Targeted paid campaigns." }
+    ],
+    idealClientProfile: ["Growing businesses", "E-commerce stores"],
+    outcomes: ["Consistent lead generation", "Strong brand presence"],
+    faqs: [{ question: "Included platforms?", answer: "Any four standard platforms." }]
   },
   {
     name: "Momentum",
     price: "PKR 175,000",
     cadence: "/mo",
     subtitle: "Stronger Engagement Package",
-    features: ["4–5 Platforms", "20–25 Content Pieces / Month", "Website + Basic SEO Setup"],
+    description: "Build momentum with SEO and a solid web foundation.",
+    features: [
+      { title: "4–5 Platforms", description: "Maximized social reach." },
+      { title: "20–25 Content Pieces / Month", description: "Aggressive content strategy." },
+      { title: "Website + Basic SEO Setup", description: "Foundational digital presence." }
+    ],
+    idealClientProfile: ["Established brands", "Service businesses"],
+    outcomes: ["Improved search visibility", "Higher conversion rates"],
+    faqs: [{ question: "What does SEO setup include?", answer: "Basic on-page optimization and technical setup." }]
   },
   {
     name: "Performance",
     price: "PKR 250,000",
     cadence: "/mo",
     subtitle: "Scaling Generation Package",
+    description: "Focus on performance and tracking conversions.",
     features: [
-      "5 Platforms",
-      "25–30 Content Pieces / Month",
-      "3 Ad Campaigns + Conversion Tracking",
+      { title: "5 Platforms", description: "Omnichannel approach." },
+      { title: "25–30 Content Pieces / Month", description: "Daily engagement." },
+      { title: "3 Ad Campaigns + Conversion Tracking", description: "Data-driven paid media." }
     ],
+    idealClientProfile: ["Scaling businesses", "High-growth startups"],
+    outcomes: ["Measurable ROI", "Scalable lead generation"],
+    faqs: [{ question: "Is ad spend included?", answer: "No, ad spend is billed separately." }]
   },
   {
     name: "Scale",
     price: "PKR 350,000",
     cadence: "/mo",
     subtitle: "Scaling Brands Package",
-    features: ["6 Platforms", "30–40 Content Pieces / Month", "CRM Setup + Automation Flows"],
+    description: "Advanced automation and CRM integration.",
+    features: [
+      { title: "6 Platforms", description: "Total market coverage." },
+      { title: "30–40 Content Pieces / Month", description: "High-frequency posting." },
+      { title: "CRM Setup + Automation Flows", description: "Streamlined lead management." }
+    ],
+    idealClientProfile: ["Large enterprises", "National brands"],
+    outcomes: ["Automated sales processes", "Maximized customer lifetime value"],
+    faqs: [{ question: "Which CRM do you use?", answer: "We support major CRMs like HubSpot and Salesforce." }]
   },
   {
     name: "Platinum",
     price: "PKR 500,000",
     cadence: "/mo",
     subtitle: "Full Digital Growth System",
-    features: ["7 Platforms", "40–50 Content Pieces / Month", "Advanced Ads + CRM & Automation"],
+    description: "A complete end-to-end digital growth ecosystem.",
+    features: [
+      { title: "7 Platforms", description: "Every major channel covered." },
+      { title: "40–50 Content Pieces / Month", description: "Dominant content presence." },
+      { title: "Advanced Ads + CRM & Automation", description: "Enterprise-grade campaigns." }
+    ],
+    idealClientProfile: ["Industry leaders", "Market dominators"],
+    outcomes: ["Market leadership", "Fully integrated systems"],
+    faqs: [{ question: "Is this a custom solution?", answer: "Yes, tailored to your specific enterprise needs." }]
   },
   {
     name: "Enterprise",
     price: "PKR 750,000+",
     cadence: "/mo",
     subtitle: "Dedicated Growth Department",
+    description: "An outsourced growth department working exclusively for you.",
     features: [
-      "Custom Strategy & Multi-Channel Management",
-      "50+ Content Pieces / Month",
-      "Dedicated Account Manager & Support",
+      { title: "Custom Strategy & Multi-Channel Management", description: "Bespoke strategic planning." },
+      { title: "50+ Content Pieces / Month", description: "Unmatched content volume." },
+      { title: "Dedicated Account Manager & Support", description: "White-glove service." }
     ],
-  },
+    idealClientProfile: ["Multinational corporations", "Complex organizations"],
+    outcomes: ["Unparalleled growth", "Strategic partnership"],
+    faqs: [{ question: "How does the dedicated team work?", answer: "They operate as an extension of your internal team." }]
+  }
 ];
 
 export const TECH_SOLUTIONS = [
@@ -252,4 +451,36 @@ export const BUDGET_OPTIONS = [
   "Scale — PKR 350,000/mo",
   "Platinum — PKR 500,000/mo",
   "Enterprise — PKR 750,000+/mo",
+];
+
+export const VISION_MISSION = {
+  vision: "To be the most trusted and innovative business growth and digital transformation partner across Pakistan and Saudi Arabia — empowering organizations to grow smarter and lead the future.",
+  mission: "To deliver innovative branding, digital growth, automation, software and AI solutions that drive efficiency, enhance customer experience and create measurable, sustainable business value."
+};
+
+export const GLOBAL_PRESENCE_DATA = [
+  {
+    country: "PAKISTAN",
+    subtext: "Serving businesses across Pakistan with local insight and dedicated support",
+    cities: ["Islamabad", "Lahore", "Karachi"],
+    offices: [
+      "Head Office — Wah Cantt, Pakistan",
+      "Islamabad Office — Blue Area",
+      "Chitral Office — Pakistan"
+    ]
+  },
+  {
+    country: "SAUDI ARABIA",
+    subtext: "Empowering businesses across Saudi Arabia with proximity, presence and performance",
+    cities: ["Riyadh", "Jeddah", "Dammam"],
+    offices: [
+      "Riyadh — Regional Presence"
+    ]
+  }
+];
+
+export const INDUSTRY_TAGS = [
+  "Real Estate", "Hospitality", "Retail & E-commerce", "Construction", 
+  "Education", "Healthcare", "Logistics", "Technology", 
+  "Corporate Services", "Lifestyle", "Finance", "Media & Entertainment"
 ];

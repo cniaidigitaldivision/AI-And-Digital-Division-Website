@@ -91,7 +91,7 @@ function PackageCardBody({ p, isActive, prefersReducedMotion }: { p: (typeof PAC
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {p.features.map((f, i) => (
             <motion.li
-              key={f}
+              key={f.title}
               initial={prefersReducedMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -12 }}
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10%" }}
@@ -99,7 +99,7 @@ function PackageCardBody({ p, isActive, prefersReducedMotion }: { p: (typeof PAC
               className="flex items-start gap-3 text-sm md:text-base text-muted-foreground"
             >
               <Check className="mt-1 size-4 shrink-0 text-[var(--teal-bright)]" />
-              <span>{f}</span>
+              <span>{f.title}</span>
             </motion.li>
           ))}
         </ul>
