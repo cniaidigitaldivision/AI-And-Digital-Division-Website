@@ -1,5 +1,5 @@
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
-import { c as Outlet } from "../_libs/@tanstack/react-router+[...].mjs";
+import { s as Outlet } from "../_libs/@tanstack/react-router+[...].mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/services-CF39xF4H.js
 var import_jsx_runtime = require_jsx_runtime();
 function ServicesLayout() {

@@ -1,4 +1,8 @@
-import { createStart, createMiddleware } from "@tanstack/react-start";
+// Imported directly from start-client-core rather than the "@tanstack/react-start"
+// barrel: the barrel's re-export makes rolldown split createMiddleware into a chunk
+// that circularly imports its own call site, leaving it undefined when
+// createCsrfMiddleware runs. See TanStack/router#7459.
+import { createStart, createMiddleware } from "@tanstack/start-client-core";
 
 import { renderErrorPage } from "./lib/error-page";
 

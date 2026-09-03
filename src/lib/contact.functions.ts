@@ -1,4 +1,4 @@
-import { createServerFn } from "@tanstack/react-start";
+import { createServerFn } from "@tanstack/start-client-core";
 import { z } from "zod";
 import { sendContactEmail } from "./contact-email.server";
 
