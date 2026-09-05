@@ -1,5 +1,18 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".vercel/output",
-  "framework": null
+  "framework": null,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "aidigitaldivision.com" }],
+      "destination": "https://www.aidigitaldivision.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/Gallery",
+      "destination": "/gallery",
+      "permanent": true
+    }
+  ]
 }

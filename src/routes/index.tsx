@@ -8,7 +8,7 @@ import { Packages, Portfolio, GlobalPresence } from "@/components/cni/SectionsB"
 import { Contact, Footer } from "@/components/cni/Contact";
 import { Testimonials } from "@/components/cni/Testimonials";
 import { FAQSection } from "@/components/cni/FAQSection";
-import { GalleryPage } from "@/routes/Gallery";
+import { GalleryPage } from "@/routes/gallery";
 import { CTASection } from "@/components/cni/CTASection";
 
 export const Route = createFileRoute("/")({

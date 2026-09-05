@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Cltr0gcK.js";import{i as t,n,t as r}from"./Contact-Dj9QK28p.js";var i=e();function a(){return(0,i.jsxs)(`div`,{className:`relative min-h-screen bg-background flex flex-col`,children:[(0,i.jsx)(t,{}),(0,i.jsx)(`main`,{className:`flex-1`,children:(0,i.jsx)(r,{})}),(0,i.jsx)(n,{})]})}export{a as component};

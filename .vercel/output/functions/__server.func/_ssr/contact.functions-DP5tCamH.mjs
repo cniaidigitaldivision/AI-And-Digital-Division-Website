@@ -1,6 +1,6 @@
 import { n as stringType, t as objectType } from "../_libs/zod.mjs";
 import { t as Resend } from "../_libs/resend+standardwebhooks.mjs";
-import { i as createServerFn, r as TSS_SERVER_FUNCTION } from "./server-9Mm31LfW.mjs";
+import { i as createServerFn, r as TSS_SERVER_FUNCTION } from "./server-DgK42Uvq.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/contact.functions-DP5tCamH.js
 var createServerRpc = (serverFnMeta, splitImportFn) => {
 	const url = "/_serverFn/" + serverFnMeta.id;
