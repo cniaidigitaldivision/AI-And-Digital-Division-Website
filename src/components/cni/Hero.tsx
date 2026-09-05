@@ -47,7 +47,7 @@ export function Hero() {
             Crescent Nova International
           </motion.span>
 
-          <h1 className="mt-7 text-4xl leading-[1.05] sm:text-6xl md:text-7xl">
+          <h1 className="mt-7 text-3xl leading-[1.05] sm:text-6xl md:text-7xl">
             {HEADLINE.map((word, i) => (
               <motion.span
                 key={word}

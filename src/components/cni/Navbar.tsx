@@ -151,7 +151,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-0">
         <a href="/" className="flex items-center gap-3">
-          <img src={logoImg} alt="Logo" className="h-16 sm:h-20 w-auto object-contain" />
+          <img src={logoImg} alt="Logo" className="h-22 sm:h-30 w-auto object-contain" />
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex">
